@@ -130,7 +130,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="[Borrar]" ShowHeader="False">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkBorrar" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkBorrar" runat="server" OnClientClick='<%# string.Format ("return confirm(\"Se eliminará animal {0}, color {1}\");",Eval("Nombre"), Eval("Color.Nombre")) %>'  CausesValidation="False" CommandName="Delete" Text="Eliminar"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
