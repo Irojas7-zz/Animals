@@ -9,6 +9,6 @@ public partial class Validadores : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        spanUno.InnerHtml = DateTime.Now.ToString("dd/MM/yyyy");
     }
 }
