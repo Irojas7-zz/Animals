@@ -52,7 +52,8 @@ public partial class Default2 : System.Web.UI.Page
 
         gvAnimales.FooterRow.Cells[7].ColumnSpan = 2;
         gvAnimales.FooterRow.Cells[8].Visible = false;
-        int filas = hfFila.Value == "" ? lst.Count : Convert.ToInt32(hfFila.Value);
+        //int filas = hfFila.Value == "" ? lst.Count : Convert.ToInt32(hfFila.Value);
+        int filas = gvAnimales.PageSize;
         int contador = 0;
         foreach (EntAnimal ent in lst)
         {
@@ -160,5 +161,65 @@ public partial class Default2 : System.Web.UI.Page
     protected void lnkGuardar_Click(object sender, EventArgs e)
     {
 
+    }
+    protected void gvAnimales_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            gvAnimales.SelectedIndex = -1;
+            gvAnimales.PageIndex = e.NewPageIndex;
+            CargarGvAnimales();
+        }
+        catch (Exception ex)
+        {
+            MostrarMensaje(ex.Message);
+        }
+    }
+    protected void gvAnimales_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        try
+        {
+            string columna = e.SortExpression;
+            string direccion;
+            if (ViewState["DIR"] == null)
+            {
+                direccion = "asc";
+                ViewState["DIR"] = "desc";
+            }
+            else
+            {
+                direccion = ViewState["DIR"].ToString();
+                if (direccion == "asc")
+                    ViewState["DIR"] = "desc";
+                else
+                    ViewState["DIR"] = "asc";
+            }
+            gvAnimales.DataSource = ObtenerOrdenado(columna, direccion);
+            gvAnimales.DataBind();
+        }
+        catch (Exception ex)
+        {
+            MostrarMensaje(ex.Message);
+        }
+    }
+
+    private List<EntAnimal> ObtenerOrdenado(string columna, string direccion)
+    {
+        List<EntAnimal> lst = new BusAnimal().Obtener();
+        if (columna == "Nombre")
+        {
+            if (direccion == "desc")
+            {
+                var lista = from a in lst orderby a.Nombre descending select a;
+                return lista.ToList();
+            }
+            else
+            {
+                var listas = from a in lst orderby a.Nombre select a;
+                return listas.ToList();
+            }
+        }
+        else
+        { throw new ApplicationException(); }
     }
 }

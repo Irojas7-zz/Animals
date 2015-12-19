@@ -15,9 +15,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1" style="overflow-x: scroll;">
-                    <asp:GridView CssClass="table table-responsive table-hover" runat="server" ID="gvAnimales" AutoGenerateColumns="False" ShowFooter="True" DataKeyNames="Id,Nombre,Tipo_Id,Color_Id,Fecha_Alta,Genero_Id,Existencia,Edad,Peso,Estatus,FotoPortada,FotoMini,Video" OnRowCancelingEdit="gvAnimales_RowCancelingEdit" OnRowDeleting="gvAnimales_RowDeleting" OnRowEditing="gvAnimales_RowEditing" OnRowUpdating="gvAnimales_RowUpdating">
+                    <asp:GridView CssClass="table table-responsive table-hover" runat="server" ID="gvAnimales" AutoGenerateColumns="False" ShowFooter="True" DataKeyNames="Id,Nombre,Tipo_Id,Color_Id,Fecha_Alta,Genero_Id,Existencia,Edad,Peso,Estatus,FotoPortada,FotoMini,Video" OnRowCancelingEdit="gvAnimales_RowCancelingEdit" OnRowDeleting="gvAnimales_RowDeleting" OnRowEditing="gvAnimales_RowEditing" OnRowUpdating="gvAnimales_RowUpdating" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="gvAnimales_PageIndexChanging" OnSorting="gvAnimales_Sorting" PageSize="3">
                         <Columns>
-                            <asp:TemplateField HeaderText="[Nombre]">
+                            <asp:TemplateField HeaderText="[Nombre]" SortExpression="Nombre">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtNombreEIT" runat="server" CssClass="form-control" Text='<%# Bind("Nombre") %>'></asp:TextBox>
                                 </EditItemTemplate>
