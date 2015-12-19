@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -162,7 +163,47 @@ public partial class Default2 : System.Web.UI.Page
     }
     protected void lnkGuardar_Click(object sender, EventArgs e)
     {
+        try
+        {
+            EntAnimal ent = new EntAnimal();
+            ent.Nombre = ((TextBox)gvAnimales.FooterRow.FindControl("txtNombreFT")).Text;
+            ent.Color_Id = Convert.ToInt32(((DropDownList)gvAnimales.FooterRow.FindControl("ddlColorFT")).SelectedValue);
+            ent.Genero_Id = Convert.ToInt32(((DropDownList)gvAnimales.FooterRow.FindControl("ddlGeneroFT")).SelectedValue);
+            ent.Peso = Convert.ToDecimal(((TextBox)gvAnimales.FooterRow.FindControl("txtPesoFT")).Text);
+            ent.Estatus = ((CheckBox)gvAnimales.FooterRow.FindControl("chkEstatusFT")).Checked;
 
+            FileUpload fuFotoPortada = (FileUpload)gvAnimales.FooterRow.FindControl("fuFotoPortadaFT");
+
+            if (fuFotoPortada.HasFile)
+            {
+                string ruta = Server.MapPath(@"img\");
+                int fileSize = fuFotoPortada.PostedFile.ContentLength;
+                string extension = System.IO.Path.GetExtension(fuFotoPortada.FileName);
+                MemoryStream str = new MemoryStream(fuFotoPortada.FileBytes);
+                System.Drawing.Image bmp = System.Drawing.Image.FromStream(str);
+                int ancho = bmp.Width;
+                int alto = bmp.Height;
+
+                if (fileSize <= 2100000 && (extension == ".jpg" || extension == ".jpeg") && (ancho == 1280 || alto == 720))
+                {
+                    fuFotoPortada.SaveAs(ruta + fuFotoPortada.FileName);
+                    ent.FotoPortada = "img\\" + fuFotoPortada.FileName;
+                    new BusAnimal().Insertar(ent);
+                    Response.Redirect(Request.CurrentExecutionFilePath);
+                }
+                else
+                    MostrarMensaje(string.Format("Tu archivo {0} es demasiado grande o no cumple con la extension \"jpg\" o no cumple con las dimensiones 1280 * 720", fuFotoPortada.FileName));
+            }
+            else
+            {
+                throw new ApplicationException("Debes incluir una Foto de portada.");
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MostrarMensaje(ex.Message);
+        }
     }
     protected void gvAnimales_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
