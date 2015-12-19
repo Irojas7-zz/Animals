@@ -16,6 +16,8 @@ public partial class Default2 : System.Web.UI.Page
 
             if (!IsPostBack)
             {
+                ViewState["DIR"] = "asc";
+                ViewState["COL"] = "Nombre";
                 CargarGvAnimales();
                 LlenarDDLs();
             }
@@ -46,7 +48,7 @@ public partial class Default2 : System.Web.UI.Page
 
     private void CargarGvAnimales()
     {
-        List<EntAnimal> lst = new BusAnimal().Obtener();
+        List<EntAnimal> lst = ObtenerOrdenado(ViewState["COL"].ToString(), ViewState["DIR"].ToString());
         gvAnimales.DataSource = lst;
         gvAnimales.DataBind();
 
@@ -210,7 +212,8 @@ public partial class Default2 : System.Web.UI.Page
         {
             if (direccion == "desc")
             {
-                var lista = from a in lst orderby a.Nombre descending select a;
+                var lista = lst.OrderByDescending(a => a.Nombre);
+                //var lista = from a in lst orderby a.Nombre descending select a;
                 return lista.ToList();
             }
             else
