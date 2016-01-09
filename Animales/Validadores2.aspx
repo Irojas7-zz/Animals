@@ -19,6 +19,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
+            <asp:Button Text="Generar Reporte" ID="btnReporte" runat="server" OnClick="btnReporte_Click" />
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
@@ -89,6 +90,7 @@
                 </div>
                 <div class="col-xs-1"></div>
             </div>
+            
             <hr />
             <asp:GridView runat="server" ID="gvAnimales"></asp:GridView>
             <hr />

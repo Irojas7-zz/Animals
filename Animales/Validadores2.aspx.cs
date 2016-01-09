@@ -29,4 +29,8 @@ public partial class Validadores2 : System.Web.UI.Page
         gvAnimales.DataBind();
 
     }
+    protected void btnReporte_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Reportes\\reporteTico.aspx");
+    }
 }

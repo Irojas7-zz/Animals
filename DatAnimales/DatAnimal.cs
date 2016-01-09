@@ -14,7 +14,7 @@ namespace Tico.Animales.DatAnimales
 
         public DataTable Obtener()
         {
-            SqlCommand comm = new SqlCommand("sp_Obtener_Animale", conn);
+            SqlCommand comm = new SqlCommand("sp_Obtener_Animales", conn);
             comm.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(comm);
             DataTable dt = new DataTable();
