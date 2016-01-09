@@ -17,4 +17,5 @@ public class RespuestaAnimales
     public List<EntAnimal> animales { get; set; }
     public bool EsError { get; set; }
     public string MensajeError { get; set; }
+    public int Resul { get; set; }
 }

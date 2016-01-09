@@ -93,6 +93,8 @@
             <asp:GridView runat="server" ID="gvAnimales"></asp:GridView>
             <hr />
             <asp:GridView runat="server" ID="gvAnimalesExterno"></asp:GridView>
+            <hr />
+            <asp:GridView runat="server" ID="gvPersonasJorsh"></asp:GridView>
         </div>
     </form>
     <script type="text/javascript">

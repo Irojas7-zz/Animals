@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://beneficia.mx/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://beneficia.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service para CRUD de animales</wsdl:documentation>
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://beneficia.mx/">
       <s:element name="HelloWorld">
@@ -18,10 +19,18 @@
       <s:element name="getAnimalesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="getAnimalesResult" type="tns:ArrayOfEntAnimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="getAnimalesResult" type="tns:RespuestaAnimales" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="RespuestaAnimales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="animales" type="tns:ArrayOfEntAnimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EsError" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Resul" type="s:int" />
+        </s:sequence>
+      </s:complexType>
       <s:complexType name="ArrayOfEntAnimal">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="EntAnimal" nillable="true" type="tns:EntAnimal" />
@@ -71,6 +80,71 @@
           <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
         </s:sequence>
       </s:complexType>
+      <s:element name="insertAnimales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Color" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Genero" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Existencias" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Edad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Peso" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FotoPortada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FotoMini" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Video" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insertAnimalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="insertAnimalesResult" type="tns:RespuestaAnimales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateAnimales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Tipo" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Color" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Genero" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Existencias" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Edad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Peso" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="FotoPortada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FotoMini" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Video" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateAnimalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="updateAnimalesResult" type="tns:RespuestaAnimales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAnimales">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAnimalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deleteAnimalesResult" type="tns:RespuestaAnimales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="RespuestaAnimales" nillable="true" type="tns:RespuestaAnimales" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -85,6 +159,118 @@
   <wsdl:message name="getAnimalesSoapOut">
     <wsdl:part name="parameters" element="tns:getAnimalesResponse" />
   </wsdl:message>
+  <wsdl:message name="insertAnimalesSoapIn">
+    <wsdl:part name="parameters" element="tns:insertAnimales" />
+  </wsdl:message>
+  <wsdl:message name="insertAnimalesSoapOut">
+    <wsdl:part name="parameters" element="tns:insertAnimalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesSoapIn">
+    <wsdl:part name="parameters" element="tns:updateAnimales" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesSoapOut">
+    <wsdl:part name="parameters" element="tns:updateAnimalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAnimales" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAnimalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpGetIn" />
+  <wsdl:message name="HelloWorldHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="getAnimalesHttpGetIn" />
+  <wsdl:message name="getAnimalesHttpGetOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="insertAnimalesHttpGetIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Color" type="s:string" />
+    <wsdl:part name="Genero" type="s:string" />
+    <wsdl:part name="Existencias" type="s:string" />
+    <wsdl:part name="Edad" type="s:string" />
+    <wsdl:part name="Peso" type="s:string" />
+    <wsdl:part name="Estatus" type="s:string" />
+    <wsdl:part name="FotoPortada" type="s:string" />
+    <wsdl:part name="FotoMini" type="s:string" />
+    <wsdl:part name="Video" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="insertAnimalesHttpGetOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesHttpGetIn">
+    <wsdl:part name="Id" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Color" type="s:string" />
+    <wsdl:part name="Genero" type="s:string" />
+    <wsdl:part name="Existencias" type="s:string" />
+    <wsdl:part name="Edad" type="s:string" />
+    <wsdl:part name="Peso" type="s:string" />
+    <wsdl:part name="Estatus" type="s:string" />
+    <wsdl:part name="FotoPortada" type="s:string" />
+    <wsdl:part name="FotoMini" type="s:string" />
+    <wsdl:part name="Video" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesHttpGetOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesHttpGetIn">
+    <wsdl:part name="Id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesHttpGetOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldHttpPostIn" />
+  <wsdl:message name="HelloWorldHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="getAnimalesHttpPostIn" />
+  <wsdl:message name="getAnimalesHttpPostOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="insertAnimalesHttpPostIn">
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Color" type="s:string" />
+    <wsdl:part name="Genero" type="s:string" />
+    <wsdl:part name="Existencias" type="s:string" />
+    <wsdl:part name="Edad" type="s:string" />
+    <wsdl:part name="Peso" type="s:string" />
+    <wsdl:part name="Estatus" type="s:string" />
+    <wsdl:part name="FotoPortada" type="s:string" />
+    <wsdl:part name="FotoMini" type="s:string" />
+    <wsdl:part name="Video" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="insertAnimalesHttpPostOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesHttpPostIn">
+    <wsdl:part name="Id" type="s:string" />
+    <wsdl:part name="Nombre" type="s:string" />
+    <wsdl:part name="Tipo" type="s:string" />
+    <wsdl:part name="Color" type="s:string" />
+    <wsdl:part name="Genero" type="s:string" />
+    <wsdl:part name="Existencias" type="s:string" />
+    <wsdl:part name="Edad" type="s:string" />
+    <wsdl:part name="Peso" type="s:string" />
+    <wsdl:part name="Estatus" type="s:string" />
+    <wsdl:part name="FotoPortada" type="s:string" />
+    <wsdl:part name="FotoMini" type="s:string" />
+    <wsdl:part name="Video" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="updateAnimalesHttpPostOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesHttpPostIn">
+    <wsdl:part name="Id" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="deleteAnimalesHttpPostOut">
+    <wsdl:part name="Body" element="tns:RespuestaAnimales" />
+  </wsdl:message>
   <wsdl:portType name="wsAnimalesSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -93,6 +279,62 @@
     <wsdl:operation name="getAnimales">
       <wsdl:input message="tns:getAnimalesSoapIn" />
       <wsdl:output message="tns:getAnimalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <wsdl:input message="tns:insertAnimalesSoapIn" />
+      <wsdl:output message="tns:insertAnimalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <wsdl:input message="tns:updateAnimalesSoapIn" />
+      <wsdl:output message="tns:updateAnimalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <wsdl:input message="tns:deleteAnimalesSoapIn" />
+      <wsdl:output message="tns:deleteAnimalesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsAnimalesHttpGet">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpGetIn" />
+      <wsdl:output message="tns:HelloWorldHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <wsdl:input message="tns:getAnimalesHttpGetIn" />
+      <wsdl:output message="tns:getAnimalesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <wsdl:input message="tns:insertAnimalesHttpGetIn" />
+      <wsdl:output message="tns:insertAnimalesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <wsdl:input message="tns:updateAnimalesHttpGetIn" />
+      <wsdl:output message="tns:updateAnimalesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <wsdl:input message="tns:deleteAnimalesHttpGetIn" />
+      <wsdl:output message="tns:deleteAnimalesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="wsAnimalesHttpPost">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldHttpPostIn" />
+      <wsdl:output message="tns:HelloWorldHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <wsdl:input message="tns:getAnimalesHttpPostIn" />
+      <wsdl:output message="tns:getAnimalesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <wsdl:input message="tns:insertAnimalesHttpPostIn" />
+      <wsdl:output message="tns:insertAnimalesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <wsdl:input message="tns:updateAnimalesHttpPostIn" />
+      <wsdl:output message="tns:updateAnimalesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <wsdl:input message="tns:deleteAnimalesHttpPostIn" />
+      <wsdl:output message="tns:deleteAnimalesHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="wsAnimalesSoap" type="tns:wsAnimalesSoap">
@@ -108,6 +350,33 @@
     </wsdl:operation>
     <wsdl:operation name="getAnimales">
       <soap:operation soapAction="http://beneficia.mx/getAnimales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <soap:operation soapAction="http://beneficia.mx/insertAnimales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <soap:operation soapAction="http://beneficia.mx/updateAnimales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <soap:operation soapAction="http://beneficia.mx/deleteAnimales" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -136,13 +405,143 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <soap12:operation soapAction="http://beneficia.mx/insertAnimales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <soap12:operation soapAction="http://beneficia.mx/updateAnimales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <soap12:operation soapAction="http://beneficia.mx/deleteAnimales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsAnimalesHttpGet" type="tns:wsAnimalesHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <http:operation location="/getAnimales" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <http:operation location="/insertAnimales" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <http:operation location="/updateAnimales" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <http:operation location="/deleteAnimales" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsAnimalesHttpPost" type="tns:wsAnimalesHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="HelloWorld">
+      <http:operation location="/HelloWorld" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <http:operation location="/getAnimales" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertAnimales">
+      <http:operation location="/insertAnimales" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateAnimales">
+      <http:operation location="/updateAnimales" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAnimales">
+      <http:operation location="/deleteAnimales" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="wsAnimales">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service para CRUD de animales</wsdl:documentation>
     <wsdl:port name="wsAnimalesSoap" binding="tns:wsAnimalesSoap">
-      <soap:address location="http://192.168.1.77/Animales/wsAnimales.asmx" />
+      <soap:address location="http://192.168.1.71/Animales/wsAnimales.asmx" />
     </wsdl:port>
     <wsdl:port name="wsAnimalesSoap12" binding="tns:wsAnimalesSoap12">
-      <soap12:address location="http://192.168.1.77/Animales/wsAnimales.asmx" />
+      <soap12:address location="http://192.168.1.71/Animales/wsAnimales.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsAnimalesHttpGet" binding="tns:wsAnimalesHttpGet">
+      <http:address location="http://192.168.1.71/Animales/wsAnimales.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsAnimalesHttpPost" binding="tns:wsAnimalesHttpPost">
+      <http:address location="http://192.168.1.71/Animales/wsAnimales.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

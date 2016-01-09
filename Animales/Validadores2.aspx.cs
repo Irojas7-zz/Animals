@@ -12,13 +12,21 @@ public partial class Validadores2 : System.Web.UI.Page
         string valor = idBox.Value;
         string val = valor;
         CargarGvAnimales();
-        CargarGvAnimalesExterno();
+        CargarGvAnimalesEXT();
+        CargarPersonasJorsh();
     }
 
-    private void CargarGvAnimalesExterno()
+    private void CargarPersonasJorsh()
+    {
+        wsNSJORSHPersonas.wsPrueba objProxy = new wsNSJORSHPersonas.wsPrueba();
+        gvPersonasJorsh.DataSource = objProxy.Obtener().Persona;
+        gvPersonasJorsh.DataBind();
+    }
+
+    private void CargarGvAnimalesEXT()
     {
         wsNSEXTAnimales.wsAnimales objProxy = new wsNSEXTAnimales.wsAnimales();
-        gvAnimalesExterno.DataSource = objProxy.getAnimales();
+        gvAnimalesExterno.DataSource = objProxy.getAnimales().animales;
         gvAnimalesExterno.DataBind();
     }
 
