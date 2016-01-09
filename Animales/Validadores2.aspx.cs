@@ -11,6 +11,22 @@ public partial class Validadores2 : System.Web.UI.Page
     {
         string valor = idBox.Value;
         string val = valor;
+        CargarGvAnimales();
+        CargarGvAnimalesExterno();
+    }
+
+    private void CargarGvAnimalesExterno()
+    {
+        wsNSEXTAnimales.wsAnimales objProxy = new wsNSEXTAnimales.wsAnimales();
+        gvAnimalesExterno.DataSource = objProxy.getAnimales();
+        gvAnimalesExterno.DataBind();
+    }
+
+    private void CargarGvAnimales()
+    {
+        wsAnimales objProxy = new wsAnimales();
+        gvAnimales.DataSource = objProxy.getAnimales().animales;
+        gvAnimales.DataBind();
 
     }
 }

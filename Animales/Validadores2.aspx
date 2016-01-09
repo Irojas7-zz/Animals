@@ -40,18 +40,18 @@
                         </div>
                         <div class="form-group has-feedback">
                             <label for="inputEmail" class="control-label">Email</label>
-                            <asp:TextBox runat="server" class="form-control" id="inputEmail" placeholder="Email" type="Email" data-error="Email no valido" required></asp:TextBox>
+                            <asp:TextBox runat="server" class="form-control" ID="inputEmail" placeholder="Email" type="Email" data-error="Email no valido" required></asp:TextBox>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword" class="control-label">Password</label>
                             <div class="form-group col-sm-6">
-                                <asp:TextBox runat="server" minlength="6" class="form-control" id="inputPassword" placeholder="Password" required></asp:TextBox>
+                                <asp:TextBox runat="server" minlength="6" class="form-control" ID="inputPassword" placeholder="Password" required></asp:TextBox>
                                 <span class="help-block with-errors"></span>
                             </div>
                             <div class="form-group col-sm-6">
-                                <asp:TextBox runat="server" class="form-control" id="inputPasswordConfirm" minlength="6" data-match="#inputPassword" placeholder="Confirm" required></asp:TextBox>
+                                <asp:TextBox runat="server" class="form-control" ID="inputPasswordConfirm" minlength="6" data-match="#inputPassword" placeholder="Confirm" required></asp:TextBox>
                                 <div class="help-block with-errors"></div>
                                 <%--data-match-error="No coinciden las contraseñas"--%>
                             </div>
@@ -89,73 +89,10 @@
                 </div>
                 <div class="col-xs-1"></div>
             </div>
-            <%--<div class="row">
-                <div role="form" id="formulario">
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4 form-group has-feedback">
-                        <label for="inputName" class="control-label">Nombre</label>
-                        <asp:TextBox ID="txtNomb" placeholder="Nombre" MaxLength="10" minlength="3" runat="server" CssClass="form-control"></asp:TextBox>
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <span class="help-block with-errors"></span>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4 form-group has-feedback">
-                        <label for="inputEmail" class="control-label">Email</label>
-                        <asp:TextBox ID="txtCorr" placeholder="Correo" runat="server" type="Email" CssClass="form-control" data-error="Email no valido" required></asp:TextBox>
-                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:TextBox ID="txtPass" placeholder="Password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:TextBox ID="txtConf" placeholder="Confimración Password" type="password" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:DropDownList ID="ddlDrop" AppendDataBoundItems="true" runat="server" CssClass="form-control">
-                            <asp:ListItem Text="[Selecione]" Value="-1"></asp:ListItem>
-                            <asp:ListItem Text="Mujer" Value="1" />
-                            <asp:ListItem Text="Hombre" Value="2" />
-                        </asp:DropDownList>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:RadioButtonList ID="rblRadio" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
-                            <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="No" Value="0"></asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:CheckBoxList ID="cblCheck" runat="server" RepeatDirection="Horizontal" CssClass="form-control">
-                            <asp:ListItem Text="Si" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="No" Value="0"></asp:ListItem>
-                        </asp:CheckBoxList>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <div class='input-group date' id='datetimepicker1'>
-                            <asp:TextBox runat="server" ID="txtFechaFT" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <br />
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <asp:TextBox ID="txtExit" placeholder="Exitencias" runat="server" CssClass="form-control"></asp:TextBox>
-                        <br />
-                        <br />
-                    </div>
-                </div>
-                <div class="col-sm-offset-4 col-sm-4">
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="form-control btn-default" ValidationGroup="Registro" />
-                </div>
-            </div>--%>
+            <hr />
+            <asp:GridView runat="server" ID="gvAnimales"></asp:GridView>
+            <hr />
+            <asp:GridView runat="server" ID="gvAnimalesExterno"></asp:GridView>
         </div>
     </form>
     <script type="text/javascript">
@@ -173,7 +110,7 @@
                 },
                 disable: 'true'
             });
-        }); 
+        });
     </script>
     <script>
        

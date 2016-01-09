@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://beneficia.mx/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://beneficia.mx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service para CRUD de animales</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://beneficia.mx/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAnimales">
+        <s:complexType />
+      </s:element>
+      <s:element name="getAnimalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAnimalesResult" type="tns:RespuestaAnimales" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespuestaAnimales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="animales" type="tns:ArrayOfEntAnimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EsError" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MensajeError" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEntAnimal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EntAnimal" nillable="true" type="tns:EntAnimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntAnimal">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tipo_Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tipo" type="tns:EntTipo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Color_Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="tns:EntColor" />
+          <s:element minOccurs="1" maxOccurs="1" name="Fecha_Alta" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Genero_Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Genero" type="tns:EntGenero" />
+          <s:element minOccurs="1" maxOccurs="1" name="Existencia" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Edad" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Peso" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoPortada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FotoMini" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Video" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntTipo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntColor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EntGenero">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Estatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAnimalesSoapIn">
+    <wsdl:part name="parameters" element="tns:getAnimales" />
+  </wsdl:message>
+  <wsdl:message name="getAnimalesSoapOut">
+    <wsdl:part name="parameters" element="tns:getAnimalesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsAnimalesSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <wsdl:input message="tns:getAnimalesSoapIn" />
+      <wsdl:output message="tns:getAnimalesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsAnimalesSoap" type="tns:wsAnimalesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://beneficia.mx/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <soap:operation soapAction="http://beneficia.mx/getAnimales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsAnimalesSoap12" type="tns:wsAnimalesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://beneficia.mx/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAnimales">
+      <soap12:operation soapAction="http://beneficia.mx/getAnimales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsAnimales">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web service para CRUD de animales</wsdl:documentation>
+    <wsdl:port name="wsAnimalesSoap" binding="tns:wsAnimalesSoap">
+      <soap:address location="http://localhost:2068/wsAnimales.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsAnimalesSoap12" binding="tns:wsAnimalesSoap12">
+      <soap12:address location="http://localhost:2068/wsAnimales.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
