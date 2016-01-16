@@ -12,7 +12,7 @@ public partial class Validadores2 : System.Web.UI.Page
         string valor = idBox.Value;
         string val = valor;
         CargarGvAnimales();
-        CargarGvAnimalesExterno();
+       // CargarGvAnimalesExterno();
     }
 
     private void CargarGvAnimalesExterno()
