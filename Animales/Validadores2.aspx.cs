@@ -12,7 +12,15 @@ public partial class Validadores2 : System.Web.UI.Page
         string valor = idBox.Value;
         string val = valor;
         CargarGvAnimales();
-        CargarGvAnimalesExterno();
+        //CargarGvAnimalesExterno();
+        usBasica.LinkClick += usBasica_LinkClick;
+        usBasica.FindControl("txtTexto");
+    }
+
+    void usBasica_LinkClick(object sender, ucCaracteresArgumentos e)
+    {
+        lblValidadores.Text = string.Format("La longitud del nombre es {0} y el nombre es {1}", e.TxtUserControl.CantidadDeCaracteres, e.TxtUserControl.Texto);
+
     }
 
     private void CargarGvAnimalesExterno()

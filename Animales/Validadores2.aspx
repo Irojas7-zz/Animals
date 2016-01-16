@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Validadores2.aspx.cs" Inherits="Validadores2" %>
 
+<%@ Register Src="~/WebUserControls/usBasica.ascx" TagPrefix="uc1" TagName="usBasica" %>
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -88,7 +91,10 @@
                         <button type="submit" class="btn btn-primary form-control">Submit</button>
                     </div>
                 </div>
-                <div class="col-xs-1"></div>
+                <div class="col-xs-1">
+                    <uc1:usBasica runat="server" ID="usBasica" />
+                    <asp:Label ID="lblValidadores" runat="server"></asp:Label>
+                </div>
             </div>
             
             <hr />

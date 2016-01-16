@@ -127,6 +127,10 @@ public partial class Informacion : System.Web.UI.Page
         ani.FotoMini = "img\\hipoMini.jpg";
         ani.Video = txtUrl.Text.Trim() == "" ? "https://www.youtube.com/embed/xPndNFuqEWY" : txtUrl.Text.Trim();
         new BusAnimal().Insertar(ani);
+
+        wsAnimales insert = new wsAnimales();
+        insert.insertAnimales(ani.Nombre, ani.Tipo_Id, ani.Color_Id, ani.Genero_Id, ani.Existencia, ani.Edad, ani.Peso, ani.Estatus, ani.FotoPortada, ani.FotoMini, ani.Video);
+
         Response.Redirect(Request.CurrentExecutionFilePath);
     }
     /// <summary>
