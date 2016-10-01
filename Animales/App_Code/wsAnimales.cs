@@ -39,4 +39,21 @@ public class wsAnimales : System.Web.Services.WebService
             return resp;
         }
     }
+    [WebMethod]
+    public RespuestaAnimales insertAnimales(string Nombre, int Tipo_Id, int Color_Id, int Genero_Id, int Existencias, int Edad, decimal Peso, bool Estatus, string FotoPortada, string FotoMini, string Video)
+    {
+        RespuestaAnimales resp = new RespuestaAnimales();
+        try
+        {
+            resp.resul = new BusAnimal().InsertarWs(Nombre, Tipo_Id, Color_Id, Genero_Id, Existencias, Edad, Peso, Estatus, FotoPortada, FotoMini, Video);
+            resp.EsError = false;
+            return resp;
+        }
+        catch (Exception ex)
+        {
+            resp.EsError = true;
+            resp.MensajeError = ex.Message;
+            return resp;
+        }
+    }
 }

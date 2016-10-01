@@ -112,5 +112,34 @@ namespace Tico.Animales.DatAnimales
                 throw new ApplicationException(string.Format("Error al eliminar en capa de datos, {0}", ex.Message));
             }
         }
+
+        public DataTable ObtenerGenero()
+        {
+            SqlCommand com = new SqlCommand("spGenero", conn);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable ObtenerColor()
+        {
+            SqlCommand com = new SqlCommand("spColor", conn);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+        public DataTable ObtenerTipo()
+        {
+            SqlCommand com = new SqlCommand("spTipo", conn);
+            com.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+
+        }
     }
 }

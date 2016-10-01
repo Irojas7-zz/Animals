@@ -13,7 +13,8 @@ namespace Tico.Animales.BusAnimales
     {
         public BusAnimal() { }
 
-        public List<EntAnimal> Obtener() {
+        public List<EntAnimal> Obtener()
+        {
             //DataTable dt = new DataTable();
             //DatAnimal da = new DatAnimal();
             //dt = da.Obtener();
@@ -40,14 +41,15 @@ namespace Tico.Animales.BusAnimales
                 ani.FotoMini = dr["Anim_Foto_Mini"].ToString();
                 ani.FotoPortada = dr["Anim_Foto_Port"].ToString();
                 ani.Video = dr["Anim_Video"].ToString();
-                    
+
                 list.Add(ani);
-             }
+            }
 
             return list;
         }
 
-        public EntAnimal Obtener(int id) {
+        public EntAnimal Obtener(int id)
+        {
             DataTable dt = new DatAnimal().Obtener(id);
 
             EntAnimal ani = new EntAnimal();
@@ -72,23 +74,73 @@ namespace Tico.Animales.BusAnimales
             return ani;
         }
 
-       public void Insertar(EntAnimal ent)
+        public void Insertar(EntAnimal ent)
         {
             int filas = new DatAnimal().Insertar(ent.Nombre, ent.Tipo_Id, ent.Color_Id, ent.Genero_Id, ent.Existencia, ent.Edad, ent.Peso, ent.Estatus, ent.FotoPortada, ent.FotoMini, ent.Video);
             if (filas != 1)
                 throw new ApplicationException("Error al insertar animal");
         }
-       public void Actualizar(EntAnimal ent)
-       {
-           int filas = new DatAnimal().Actualizar(ent.Id,ent.Nombre, ent.Tipo_Id, ent.Color_Id, ent.Genero_Id, ent.Existencia, ent.Edad, ent.Peso, ent.Estatus, ent.FotoPortada, ent.FotoMini, ent.Video);
-           if (filas != 1)
-               throw new ApplicationException("Error al insertar animal");
-       }
-       public void Eliminar(int id)
-       {
-           int filas = new DatAnimal().Eliminar(id);
-           if (filas != 1)
-               throw new ApplicationException("Error al insertar animal");
-       }
+        public int InsertarWs(string Nombre, int Tipo_Id, int Color_Id, int Genero_Id, int Existencias, int Edad, decimal Peso, bool Estatus, string FotoPortada, string FotoMini, string Video)
+        {
+            int filas = new DatAnimal().Insertar(Nombre, Tipo_Id, Color_Id, Genero_Id, Existencias, Edad, Peso, Estatus, FotoPortada, FotoMini, Video);
+            if (filas != 1)
+                throw new ApplicationException("Error al insertar animal");
+            return filas;
+        }
+        public void Actualizar(EntAnimal ent)
+        {
+            int filas = new DatAnimal().Actualizar(ent.Id, ent.Nombre, ent.Tipo_Id, ent.Color_Id, ent.Genero_Id, ent.Existencia, ent.Edad, ent.Peso, ent.Estatus, ent.FotoPortada, ent.FotoMini, ent.Video);
+            if (filas != 1)
+                throw new ApplicationException("Error al insertar animal");
+        }
+        public void Eliminar(int id)
+        {
+            int filas = new DatAnimal().Eliminar(id);
+            if (filas != 1)
+                throw new ApplicationException("Error al insertar animal");
+        }
+
+        public List<EntGenero> ObtenerGenero()
+        {
+            DataTable dt = new DatAnimal().ObtenerGenero();
+            List<EntGenero> lst = new List<EntGenero>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                EntGenero ent = new EntGenero();
+                ent.Id = Convert.ToInt32(dr["Gene_Id"]);
+                ent.Nombre = dr["Gene_Nomb"].ToString();
+                ent.Descripcion = dr["Gene_Desc"].ToString();
+                lst.Add(ent);
+            }
+            return lst;
+        }
+        public List<EntColor> ObtenerColor()
+        {
+            DataTable dt = new DatAnimal().ObtenerColor();
+            List<EntColor> lst = new List<EntColor>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                EntColor ent = new EntColor();
+                ent.Id = Convert.ToInt32(dr["Colo_Id"]);
+                ent.Nombre = dr["Colo_Nomb"].ToString();
+                ent.Descripcion = dr["Colo_Desc"].ToString();
+                lst.Add(ent);
+            }
+            return lst;
+        }
+        public List<EntTipo> ObtenerTipo()
+        {
+            DataTable dt = new DatAnimal().ObtenerTipo();
+            List<EntTipo> lst = new List<EntTipo>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                EntTipo ent = new EntTipo();
+                ent.Id = Convert.ToInt32(dr["Tipo_Id"]);
+                ent.Nombre = dr["Tipo_Nomb"].ToString();
+                ent.Descripcion = dr["Tipo_Desc"].ToString();
+                lst.Add(ent);
+            }
+            return lst;
+        }
     }
 }

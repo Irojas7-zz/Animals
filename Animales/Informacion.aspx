@@ -101,8 +101,8 @@
     <form id="form1" runat="server">
         <div class="row">
             <div class="panel panel-success" style="margin: 0 0 5px 0;">
-                <div id="snow">
-                </div>
+                <%--<div id="snow">
+                </div>--%>
                 <div class="panel-heading" style="height: 100px; overflow: hidden; padding: 0px;">
                     <img src="http://res.cloudinary.com/spotlio/image/upload/ilafnc55bhqfasvbxq4x.jpg" alt="zoo" class="img-responsive" style="margin: auto;" />
                 </div>

@@ -15,6 +15,7 @@ namespace Tico.Animales.Business.EntAnimales
         public int Tipo_Id { get; set; }
         private EntTipo tipo;
 
+
         public EntTipo Tipo
         {
             get {
@@ -31,7 +32,6 @@ namespace Tico.Animales.Business.EntAnimales
                 tipo = value;
             }
         }
-
         public int Color_Id { get; set; }
         private EntColor color;
 
